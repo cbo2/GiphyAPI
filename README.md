@@ -4,4 +4,4 @@ exercise in Giphy API usage.  Select an animal from the button list on the top (
 Users can add more animals to the list using the available form text area and button.
 The giphy images will start off still and can be animated by clicking on the image (toggle on/off).
 
-I added/linked this to my portfolio.
+I added/linked this to my portfolio.  https://cbo2.github.io/Bootstrap-Portfolio/
