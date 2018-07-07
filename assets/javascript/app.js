@@ -66,12 +66,16 @@ function getGiphy(queryParm) {
         url: queryURL,
         method: "GET"
     }).then(function(response) {
+        var divRowRating = new $("<div>");      // create new div for each row of 3 columns
+        divRowRating.addClass("rowRating");
         var divRow = new $("<div>");      // create new div for each row of 3 columns
         divRow.addClass("row");
         for (i = 0; i < 10; i++) {
             var divColumn = new $("<div>");     // create a new column div
             divColumn.addClass("column");
-            divColumn.text("Rating: " + response.data[i].rating);
+            var divColumnRating = new $("<div>");     // create a new column div
+            divColumnRating.addClass("column");
+            divColumnRating.text("Rating: " + response.data[i].rating);
             var btn = $("<button>");
             btn.addClass("imageButton");
             var pic = $("<img>");
@@ -80,12 +84,17 @@ function getGiphy(queryParm) {
             btn.append(pic);
             divColumn.append(btn);
             if (i > 0 && i % 3 === 0) {   
+                $("#animals").append(divRowRating);
                 $("#animals").append(divRow);
                 divRow = new $("<div>");
                 divRow.addClass("row");
+                divRowRating = new $("<div>");      
+                divRowRating.addClass("rowRating");
             }
+            divRowRating.append(divColumnRating);
             divRow.append(divColumn);              
         }
+        $("#animals").append(divRowRating);
         $("#animals").append(divRow);
     });
 

@@ -5,7 +5,7 @@
 /* Create three equal columns that sits next to each other */
 .column {
     float: left;
-    flex: 33.33%;
+    width: 33.33%;
     padding: 5px;
 }
 
@@ -31,6 +31,11 @@ button.animal {
 }
 
 /* Responsive layout - makes the three columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 700px) {
+    .column {
+        width: 50%;
+    }
+}
 @media screen and (max-width: 500px) {
     .column {
         width: 100%;
