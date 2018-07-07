@@ -2,14 +2,22 @@
     box-sizing: border-box;
 }
 
-.row {
+/* .row {
     display: flex;
-}
+} */
 
 /* Create three equal columns that sits next to each other */
 .column {
+    float: left;
     flex: 33.33%;
     padding: 5px;
+}
+
+/* Clearfix (clear floats) */
+.row::after {
+    content: "";
+    clear: both;
+    display: table;
 }
 
 button.animal {

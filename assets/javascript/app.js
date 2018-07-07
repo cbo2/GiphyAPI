@@ -40,7 +40,6 @@ renderButtons();
 $(document).ready(function() {
     $("#addAnimal").click(function(event) {
         event.preventDefault();
-        console.log("going to add animal: " + $("#animal-input").val());
         animals.push($("#animal-input").val());
         renderButtons();
     });
@@ -49,36 +48,28 @@ $(document).ready(function() {
 $(document).on("click", ".animal", function(event) {
     event.preventDefault();
     $("#animals").empty();
-    console.log("going to get buttons data-name: " + $(this).attr("data-name"));
     getGiphy($(this).attr("data-name"));
 });
 
 // add click events for the dynamically generated buttons surrounding our giphy images
 $(document).on("click", ".imageButton", function() {
-    console.log("going to swap: " + $(this).children("img").attr("alt_src"));
     var alt = $(this).children("img").attr("alt_src");
     $(this).children("img").attr("alt_src", $(this).children("img").attr("src"));
     $(this).children("img").attr("src", alt);
-    // console.log("going to swap: " + $(this).attr("alt_src"));
 });
 
 
 function getGiphy(queryParm) {
     var queryURL = "https://api.giphy.com/v1/gifs/search?api_key=1XrIUaV8UE1LKMPatvKuDapUlCjKsQ2L&q=" + 
                     queryParm +  "&limit=10&offset=0&lang=en";
-    console.log("the giphy queryURL is: " + queryURL);
     $.ajax({
         url: queryURL,
         method: "GET"
     }).then(function(response) {
-        var colCount = 0;
-        console.log(response);
-        console.log("for: " + queryParm + " going to show: " + response.data[0].images.fixed_height_small_still.url);
-
-        var divRow = new $("<div>");       
+        var divRow = new $("<div>");      // create new div for each row of 3 columns
         divRow.addClass("row");
         for (i = 0; i < 10; i++) {
-            var divColumn = new $("<div>");
+            var divColumn = new $("<div>");     // create a new column div
             divColumn.addClass("column");
             divColumn.text("Rating: " + response.data[i].rating);
             var btn = $("<button>");
